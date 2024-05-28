@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>口服劑型藥品再製資訊</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .search-container,
+        .dropdown-container,
+        .info-container,
+        .test-container {
+            margin-bottom: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        #content {
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+            height: 200px;
+        }
+        .images-container img {
+            width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+        .description-container {
+            text-align: center;
+            padding: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+        #video-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+        iframe {
+            width: 100%;
+            height: 315px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>口服劑型藥品再製資訊</h1>
+    <p>作者：北醫陳紀孝 <br>版本 v0.9</p>
+
+    <div class="search-container">
+        <label for="search">藥品搜尋</label>
+        <input type="text" id="search" placeholder="請輸入選項">
+    </div>
+
+    <div class="dropdown-container">
+        <label for="dropdown">品名</label>
+        <select id="dropdown">
+            <option value="">請選擇一個選項</option>
+            <option value="ABIRATRED">◆Abiratred tab 250mg愛瑞治膜衣錠</option>
+            <option value="ANAZO">◆Anazo 1mg(安納柔膜衣錠)</option>
+            <option value="AROMASIN">(專案)Aromasin S.C.tab 25mg(諾曼癌素)</option>
+            <option value="CASODEX">◆Casodex tab 50mg蘇可多錠</option>
+            <option value="Erleada">◆Erleada F.C.tab 60mg安列康膜衣錠</option>
+            <option value="GLIVEC">(專案)◆Glivec 100mg (基利克) fctab.</option>
+            <option value="LENOZOLE">◆Lenozole 2.5mg(萊諾妥膜衣錠)</option>
+            <option value="METHOTREXATE">▲Methotrexate 2.5mg(滅殺除癌錠)</option>
+            <option value="NOLVODEX">◆Nolvadex 10mg 諾瓦得士錠 (Tamoxifen)</option>
+            <option value="STIVAGA">◆Stivarga F.C tab 40mg癌瑞格膜衣錠</option>
+            <option value="SUTENT">◆SUTENT 12.5MG紓癌特膠囊</option>
+            <option value="TS_1">◆TS_1 20MG愛斯萬膠囊20毫克</option>
+            <option value="Ufur">UFUR 100MG友復膠囊</option>
+            <option value="VOTRIENT">VOTRIENT FILM-COATED 200MG福退癌膜衣錠</option>
+            <option value="XELODA">XeLODA Tab 500mg截瘤達錠500公絲</option>
+            <option value="ZYTIGA">ZYTIGA 250MG 澤珂錠</option>
+
+
+        </select>
+    </div>
+
+    <div class="info-container">
+        <label for="content">再製資訊</label>
+        <div id="content">
+            <!-- 用於顯示選擇的內容 -->
+            請選擇一個選項以顯示相應的內容。
+        </div>
+    </div>
+
+    <div class="test-container">
+        <h2>崩散試驗</h2>
+        <div class="images-container">
+            <img id="image1" src="" alt="相片1">
+            <div class="description-container" id="desc1">說明1</div>
+            <img id="image2" src="" alt="相片2">
+            <div class="description-container" id="desc2">說明2</div>
+        </div>
+    </div>
+
+    <div class="test-container">
+        <h2>管灌試驗</h2>
+        <div id="video-container">
+            <!-- 用於顯示選擇的影片 -->
+            影片
+        </div>
+    </div>
+</div>
+
+<script>
+    // 定義選項對應的內容物件
+    var contentMap = {
+        ABIRATRED: "藥錠無法泡於常溫開水中崩散。建議以夾鏈袋裝好藥錠密封後，置於研缽內，用研杵壓碎藥錠，注意不要讓夾鏈袋破掉，避免藥粉飛出，對操作者造成危害，再將常溫開水加入夾鏈袋，配製好後請立即飲用或管灌。",
+        ANAZO: "藥錠泡於20~30mL常溫開水中攪拌至崩散後立即飲用或管灌。",
+        AROMASIN: "藥錠無法泡於常溫開水中崩散。建議以夾鏈袋裝好藥錠密封後，置於研缽內，用研杵壓碎藥錠，注意不要讓夾鏈袋破掉，避免藥粉飛出，對操作者造成危害，再將常溫開水加入夾鏈袋，配製好後請立即飲用或管灌。",
+        CASODEX: "藥錠無法泡於常溫開水中崩散。建議以夾鏈袋裝好藥錠密封後，置於研缽內，用研杵壓碎藥錠，注意不要讓夾鏈袋破掉，避免藥粉飛出，對操作者造成危害，再將常溫開水加入夾鏈袋，配製好後請立即飲用或管灌。",
+        Erleada: "藥錠泡於常溫開水中約2分鐘內可完全崩散，攪拌均勻後立即飲用或管灌。",
+        GLIVEC: "藥錠無法泡於常溫開水中崩散。建議以夾鏈袋裝好藥錠密封後，置於研缽內，用研杵壓碎藥錠，注意不要讓夾鏈袋破掉，避免藥粉飛出，對操作者造成危害，再將常溫開水加入夾鏈袋，配製好後請立即飲用或管灌。",
+        LENOZOLE: "藥錠泡於常溫開水中約4分鐘內可完全崩散，攪拌均勻後立即飲用或管灌。",
+        METHOTREXATE: "藥錠泡於常溫開水中約8分鐘內可完全崩散，攪拌均勻後立即飲用或管灌。",
+        NOLVODEX: "藥錠泡於常溫開水中約10分鐘內可完全崩散，攪拌均勻後立即飲用或管灌。",
+        STIVAGA: "藥錠無法泡於常溫開水中崩散。建議以夾鏈袋裝好藥錠密封後，置於研缽內，用研杵壓碎藥錠，注意不要讓夾鏈袋破掉，避免藥粉飛出，對操作者造成危害，再將常溫開水加入夾鏈袋，配製好後請立即飲用或管灌。",
+        SUTENT : "膠囊無法泡於常溫開水中溶解。",
+        TS_1 : "膠囊無法泡於常溫開水中溶解。",
+        Ufur : "膠囊無法泡於常溫或約50°C的開水中溶解。",
+        VOTRIENT : "藥錠無法泡於常溫開水中崩散。建議以夾鏈袋裝好藥錠密封後，置於研缽內，用研杵壓碎藥錠，注意不要讓夾鏈袋破掉，避免藥粉飛出，對操作者造成危害，再將常溫開水加入夾鏈袋，配製好後請立即飲用或管灌。",
+        XELODA : "藥錠無法泡於常溫開水中崩散。建議以夾鏈袋裝好藥錠密封後，置於研缽內，用研杵壓碎藥錠，注意不要讓夾鏈袋破掉，避免藥粉飛出，對操作者造成危害，再將常溫開水加入夾鏈袋，配製好後請立即飲用或管灌。",
+        ZYTIGA : "藥錠無法泡於常溫開水中崩散。建議以夾鏈袋裝好藥錠密封後，置於研缽內，用研杵壓碎藥錠，注意不要讓夾鏈袋破掉，避免藥粉飛出，對操作者造成危害，再將常溫開水加入夾鏈袋，配製好後請立即飲用或管灌。"
+        
+    };
+
+    // 定義選項對應的圖片物件
+    var imageMap = {
+        ABIRATRED: [
+                "https://drive.google.com/thumbnail?id=1aNi7DtKXld9BtVn3nG9Bflz2Z-81gy_r",
+                "https://drive.google.com/thumbnail?id=1UAnS26woAWcY7nT-AfHxWJdnZ2E_wTTs"
+        ],
+        ANAZO: [
+                "https://drive.google.com/thumbnail?id=1l44MdWLdKJPlNj8h24OsNqMSNVPixX5Z",
+                "https://drive.google.com/thumbnail?id=1DeONVPuPXoz1bYEb042lNtsGrdcZLzaD"
+        ],
+        AROMASIN: [
+                "https://drive.google.com/thumbnail?id=1urNBf1Vzi8sS3cYISu3qxj3u9qgOyjDM",
+                "https://drive.google.com/thumbnail?id=1v6qwd0S1Oq1SLHiwXN-lnjZPcLttpFRY"
+        ],
+        CASODEX: [
+                "https://drive.google.com/thumbnail?id=1vsbSwOXPjkMOba5sneZ1NNloGmOVwtVx",
+                "https://drive.google.com/thumbnail?id=1w3qiR1zP3ohrtoCN13rMuQEctrq8jVSa"
+        ],
+        Erleada: [
+                "https://drive.google.com/thumbnail?id=1uXWaZpRPM0WF9wOizuVPvKhbS4AbD4eB",
+                "https://drive.google.com/thumbnail?id=1ulyfTh3QHImJ-a7ttzpiB_8Vn114RIfM"
+        ],
+        GLIVEC: [
+                "https://drive.google.com/thumbnail?id=1G2BKisEhudHUKZyyL5tU3cdJGANTCgZd",
+                "https://drive.google.com/thumbnail?id=1OjhwV5MwSnuAYLU9W4fO2g3a8apPzTup"
+        ],
+        LENOZOLE: [
+                "https://drive.google.com/thumbnail?id=1vVXee8rKeAeu85JamStm793dGJ4Ps6sC",
+                "https://drive.google.com/thumbnail?id=1vguuySp6rjHpu7fzYUAWXAL2-aQBcNVI"
+        ],
+        METHOTREXATE: [
+                "https://drive.google.com/thumbnail?id=1jlkMgl6denXFIgGNnGX82eUsuFUkw4EC",
+                "https://drive.google.com/thumbnail?id=1nfQmU52cHzISkLBmJdnd2CiGiwAZZqPe"
+        ],
+        NOLVODEX: [
+                "https://drive.google.com/thumbnail?id=1uPcOMWuE7SdiAHuTaNRWr8R_zKNMQ1ec",
+                "https://drive.google.com/thumbnail?id=1MKSb-PUulEq0xfU8TnJ15zhy2HfC18nW"
+        ],
+        STIVAGA: [
+            "https://drive.google.com/thumbnail?id=1XOqOlzIEW8yDOF4Fw2S7yVH-4jkF5tFa",
+            "https://drive.google.com/thumbnail?id=19xkNjwzMaRj6nMM9R9dnZwPQa2PFJeoO"
+        ],
+        SUTENT : [
+            "https://drive.google.com/thumbnail?id=10MJj3NhMIQIJf5HrkChn4ETGgiQE3IFP",
+            "https://drive.google.com/thumbnail?id=15pZ8JgTWwbbigHvMsgY8ML-CwAGTL3GZ"
+        ],
+        TS_1 : [
+            "https://drive.google.com/thumbnail?id=1tz-Y1UnVWGGTmsrTwp520ShLnXV5PxDm",
+            "https://drive.google.com/thumbnail?id=1u-lsNOti1k20PaiYgGZ2awmwSsc8LckC"
+        ],
+        Ufur : [
+            "https://drive.google.com/thumbnail?id=1k2hSxdP2_kRx2Cu80XNxXk48mGJ7m8u0",
+            "https://drive.google.com/thumbnail?id=1l4tY2OGTs78XFONrVvHXajhslMrFQU_y"
+        ],
+        VOTRIENT : [
+            "https://drive.google.com/thumbnail?id=1AkXe6EINSKh0zpa4y_7BB5ZEWm-Kla0x",
+            "https://drive.google.com/thumbnail?id=1H5wMJIFd131GbEaFs_uKMKhGerDAbmVy"
+        ],
+        XELODA : [
+            "https://drive.google.com/thumbnail?id=1dFreBlmEGQwNyXy-Or4RJRh7j5bvfDLu",
+            "https://drive.google.com/thumbnail?id=1q8UrIDAnNHC_vD5yJL0iEn01Y5i97hx1"
+        ],
+        ZYTIGA : [
+            "https://drive.google.com/thumbnail?id=1Moofip1WYLMFFDsOXKiSJZXP3Yp0WDOh",
+            "https://drive.google.com/thumbnail?id=1j2phHS5zjhxpX6S8GgJ4BC2QjQgAI4qT"
+        ]
+
+    };
+
+    // 定義圖片說明
+    var descMap = {
+        ABIRATRED: ["ABIRATRED裸錠", "溶離10分鐘後"],
+        ANAZO: ["ANAZO裸錠", "溶離10分鐘後"],
+        AROMASIN: ["AROMASIN裸錠", "溶離10分鐘後"],
+        CASODEX: ["CASODEX裸錠", "溶離10分鐘後"],
+        Erleada: ["Erleada裸錠", "溶離10分鐘後"],
+        GLIVEC: ["Glivec裸錠", "溶離10分鐘後"],
+        LENOZOLE:["LENOZOLE","溶離10分鐘後"],
+        METHOTREXATE:["METHOTREXATE裸錠","溶離10分鐘後"],
+        NOLVODEX:["NOLVODEX裸錠","溶離10分鐘後"],
+        STIVAGA:["STIVAGA裸錠","溶離10分鐘後"],
+        SUTENT : ["SUTENT裸錠","溶離10分鐘後"],
+        TS_1 : ["TS_1裸錠","溶離10分鐘後"],
+        Ufur : ["Ufur裸錠","溶離10分鐘後"],
+        VOTRIENT : ["VOTRIENT裸錠","溶離10分鐘後"],
+        XELODA : ["XELODA裸錠","溶離10分鐘後"],
+        ZYTIGA : ["ZYTIGA裸錠","溶離10分鐘後"]
+    };
+
+    // 定義選項對應的影片物件
+    var videoMap = {
+        ABIRATRED : null,
+        ANAZO : "https://drive.google.com/file/d/1pFacHn54IzEBGipIHatnZhtZg17BD3n8/preview",
+        AROMASIN : "https://drive.google.com/file/d/1v7RtY7WveaSvGBHhYw_uvErxh0TWfqfs/preview",
+        CASODEX : "https://drive.google.com/file/d/1wEsEOOiMx4ZB9YGRnv91At2CS5_rscUM/preview",
+        Erleada : "https://drive.google.com/file/d/1umpR7t7R5PL9tBZXt43WgrsAh3ZCgiLK/preview",
+        GLIVEC : null,
+        LENOZOLE : "https://drive.google.com/file/d/1vkqjr2TfSnMb8uWXrsWMv9ywmOqNx_3X/preview",
+        METHOTREXATE : "https://drive.google.com/file/d/1zILp_9_8M0bX0orA9lb9ntfqGqW_mYgt/preview",
+        NOLVODEX :"https://drive.google.com/file/d/1lgxiUTfhd3se5oC1FnW83WXzplA46BFA/preview",
+        STIVAGA : null,
+        SUTENT : null,
+        TS_1 : null,
+        Ufur : null,
+        VOTRIENT : null,
+        XELODA : null,
+        ZYTIGA : null,
+
+    };
+
+    // 獲取下拉式選單元素
+    var dropdown = document.getElementById('dropdown');
+    // 獲取顯示內容的區域元素
+    var content = document.getElementById('content');
+    // 獲取播放影片的容器元素
+    var videoContainer = document.getElementById('video-container');
+    // 獲取顯示圖片的容器元素
+    var image1 = document.getElementById('image1');
+    var image2 = document.getElementById('image2');
+    // 獲取圖片說明容器元素
+    var desc1 = document.getElementById('desc1');
+    var desc2 = document.getElementById('desc2');
+    // 獲取搜尋框元素
+    var searchInput = document.getElementById('search');
+
+    function displayContent(selectedValue) {
+        // 獲取選擇的選項對應的文字內容
+        var selectedContent = contentMap[selectedValue];
+        // 更新顯示內容
+        content.textContent = selectedContent;
+
+        // 清空圖片和影片容器內的內容
+        image1.src = '';
+        image2.src = '';
+        videoContainer.innerHTML = '';
+
+        // 根據選擇的值顯示對應的圖片和影片
+        if (selectedValue) {
+            // 顯示對應的圖片
+            var images = imageMap[selectedValue];
+            image1.src = images[0];
+            image2.src = images[1];
+
+            // 顯示對應的圖片說明
+            var descriptions = descMap[selectedValue];
+            desc1.textContent = descriptions[0];
+            desc2.textContent = descriptions[1];
+
+            // 顯示對應的影片
+            var videoUrl = videoMap[selectedValue];
+            //檢查有無管灌影片
+                if(videoUrl !== null){
+                    var videoEmbed = document.createElement('iframe');
+                    videoEmbed.setAttribute('src', videoUrl);
+                    videoEmbed.setAttribute('allowfullscreen', '');
+                    videoContainer.appendChild(videoEmbed);
+                }
+                else{
+                    videoContainer.textContent ='因無法崩散而未執行'
+                }
+
+        }
+    }
+
+    // 當搜尋框內容改變時觸發
+    searchInput.addEventListener('input', function() {
+        var searchValue = searchInput.value.toUpperCase();
+        var options = dropdown.options;
+
+        // 顯示或隱藏選項
+        for (var i = 1; i < options.length; i++) {
+            var optionText = options[i].text.toUpperCase();
+            options[i].style.display = optionText.indexOf(searchValue) > -1 ? "" : "none";
+        }
+
+        // 如果只有一個選項可見，則自動選擇它
+        var visibleOptions = Array.from(options).filter(option => option.style.display !== "none");
+        if (visibleOptions.length === 2) {
+            dropdown.value = visibleOptions[1].value;
+            displayContent(dropdown.value);
+        }
+    });
+
+    // 當下拉式選單選擇內容發生變化時觸發
+    dropdown.addEventListener('change', function() {
+        displayContent(dropdown.value);
+    });
+</script>
+
+</body>
+</html>
